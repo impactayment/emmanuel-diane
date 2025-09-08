@@ -1209,7 +1209,6 @@ export default function Timeline() {
                 )}
               </Button>
               
-              {/* Bouton Jeu caché
               <Button
                 onClick={() => setShowGame(!showGame)}
                 variant="ghost"
@@ -1226,15 +1225,14 @@ export default function Timeline() {
                   <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full animate-pulse"></span>
                 )}
               </Button>
-              */}
             </div>
           </div>
         </div>
 
         {/* Affichage conditionnel du jeu ou de la timeline */}
         <div className="relative">
-          {/* Animation de transition - Section Jeu cachée */}
-          {/* <div className={`transition-all duration-500 transform ${showGame ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 absolute inset-0 pointer-events-none"}`}>
+          {/* Animation de transition - Section Jeu */}
+          <div className={`transition-all duration-500 transform ${showGame ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 absolute inset-0 pointer-events-none"}`}>
             <div className="mt-4">
               <Card className="border-0 shadow-md bg-gradient-to-br from-purple-50 to-indigo-50 max-w-4xl mx-auto">
                 <CardContent className="p-3 scale-90 origin-top">
@@ -1242,10 +1240,10 @@ export default function Timeline() {
                 </CardContent>
               </Card>
             </div>
-          </div> */}
+          </div>
           
-          {/* Toujours afficher la timeline maintenant que le jeu est caché */}
-          <div className="transition-all duration-500 transform opacity-100 translate-y-0">
+          {/* Timeline affichée si le jeu n'est pas actif */}
+          <div className={`transition-all duration-500 transform ${!showGame ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 absolute inset-0 pointer-events-none"}`}>
             <>
             <div className="relative">
               {/* Timeline principale avec effet de dégradé */}
