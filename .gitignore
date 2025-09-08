@@ -32,6 +32,12 @@ next-env.d.ts
 /data/
 .env*.local
 
+# Documentation files
+*.md
+!README.md
+!CLAUDE.md
+/docs/
+
 # Playwright
 .playwright-mcp/
 
