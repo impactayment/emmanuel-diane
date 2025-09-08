@@ -1,6 +1,8 @@
-# Emmanuel & Diane - Notre Mariage
+# Emmanuel & Diane - Notre Mariage 💍
 
 Site web pour notre mariage le 14 septembre 2025.
+
+🌐 **Site Live** : https://emmanuel-diane.vercel.app
 
 ## Technologies utilisées
 
