@@ -27,12 +27,12 @@ DATABASE_URL=postgresql://[user]:[password]@[host]/[database]?sslmode=require
 
 (Récupérer la valeur depuis le fichier `/lib/db.ts`)
 
-### 3. Récupérer les IDs pour GitHub Actions
+### 3. IDs pour GitHub Actions
 
-Dans les settings du projet Vercel :
+Configuration Vercel obtenue :
 
-1. **Project ID** : Dans Settings > General
-2. **Org ID** : Dans Settings > General
+1. **Project ID** : `prj_pyhGrLneMIOVJ39MaQyHWtalUoHZ`
+2. **Org ID** : `team_MbARi9yMJcOlU16X5762XWhD`
 3. **Token** : Créer sur https://vercel.com/account/tokens
 
 ### 4. Configurer les Secrets GitHub
