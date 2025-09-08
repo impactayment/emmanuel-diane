@@ -146,7 +146,7 @@ export default function Hero() {
             </Button>
           </div>
 
-          {/* Bouton Jeu des Mariés - Séparé - CACHÉ
+          {/* Bouton Jeu des Mariés - Séparé */}
           <div className="flex justify-center">
             <Button
               onClick={() => {
@@ -170,7 +170,6 @@ export default function Hero() {
               <div className="absolute inset-0 bg-white/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </Button>
           </div>
-          */}
         </div>
 
         {/* Call to Action secondaire avec indication de scroll */}
