@@ -30,7 +30,7 @@ export default function Hero() {
       <div className="text-center px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto py-6 sm:py-8 md:py-10 lg:py-12">
         <div className="mb-4 sm:mb-6 md:mb-8">
           <Heart className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-rose-500 mx-auto mb-3 sm:mb-4 md:mb-5 lg:mb-6 animate-bounce" />
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] mb-3 sm:mb-4">MARIAGE COUTUMIER</p>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] mb-3 sm:mb-4">MARIAGE</p>
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-gray-800 mb-3 sm:mb-4">
             <span className="font-script text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">Diane</span>
             <span className="block text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-amber-500 my-1 xs:my-2 font-serif">&</span>
