@@ -23,3 +23,5 @@ Le site sera accessible sur http://localhost:3000
 ## Déploiement
 
 Le site est déployé automatiquement sur Vercel à chaque push sur la branche principale.
+- Via intégration GitHub-Vercel
+- Via GitHub Actions workflow
