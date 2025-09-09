@@ -42,7 +42,7 @@ export default function WeddingDetails() {
               <CardTitle className="text-xl font-serif text-rose-800">Réception & Dîner</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-rose-700 mb-2 font-semibold">19h30 - 21h30</p>
+              <p className="text-rose-700 mb-2 font-semibold">19h30 - 00h00</p>
               <p className="text-sm text-rose-600">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
               <p className="text-xs text-rose-500 mt-2 italic">Célébration avec famille et amis</p>
             </CardContent>
@@ -54,7 +54,7 @@ export default function WeddingDetails() {
               <CardTitle className="text-xl font-serif">Soirée Dansante</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-2">21h30 - 01h00</p>
+              <p className="text-gray-600 mb-2">00h00 - 01h00</p>
               <p className="text-sm text-gray-500">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
             </CardContent>
           </Card>
