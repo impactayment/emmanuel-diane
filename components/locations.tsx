@@ -4,16 +4,10 @@ import { MapPin, Navigation } from "lucide-react"
 export default function Locations() {
   const locations = [
     {
-      name: "Cérémonie du Dot",
-      address: "Domaine le plouy, 94470 Boissy-Saint-Léger",
-      time: "14h00 - 22h10",
-      description: "Cérémonie traditionnelle du dot avec toutes les festivités",
-    },
-    {
-      name: "Soirée de Réception",
-      address: "Domaine le plouy, 94470 Boissy-Saint-Léger",
-      time: "22h10 - 01h00",
-      description: "Soirée dansante avec DJ et animations jusqu'au bout de la nuit",
+      name: "Cérémonie religieuse et Réception",
+      address: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
+      time: "14h00 - 01h00",
+      description: "Cérémonie religieuse suivie de la réception avec dîner et soirée dansante",
     },
   ]
 

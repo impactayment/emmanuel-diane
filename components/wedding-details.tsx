@@ -19,19 +19,19 @@ export default function WeddingDetails() {
               <CardTitle className="text-xl font-serif">Accueil des Invités</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-2">14h00 - 14h45</p>
-              <p className="text-sm text-gray-500">Domaine le plouy, 94470 Boissy-Saint-Léger</p>
+              <p className="text-gray-600 mb-2">14h00 - 15h00</p>
+              <p className="text-sm text-gray-500">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
             </CardContent>
           </Card>
 
           <Card className="text-center border-none shadow-lg hover:shadow-xl transition-shadow">
             <CardHeader>
               <Heart className="w-12 h-12 text-rose-500 mx-auto mb-2" />
-              <CardTitle className="text-xl font-serif">Cérémonie du Dot</CardTitle>
+              <CardTitle className="text-xl font-serif">Cérémonie religieuse</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-2">15h00 - 19h30</p>
-              <p className="text-sm text-gray-500">Domaine le plouy, 94470 Boissy-Saint-Léger</p>
+              <p className="text-gray-600 mb-2">15h00 - 16h30</p>
+              <p className="text-sm text-gray-500">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
             </CardContent>
           </Card>
 
@@ -41,8 +41,8 @@ export default function WeddingDetails() {
               <CardTitle className="text-xl font-serif">Dîner de Réception</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-2">20h00 - 22h00</p>
-              <p className="text-sm text-gray-500">Domaine le plouy, 94470 Boissy-Saint-Léger</p>
+              <p className="text-gray-600 mb-2">19h30 - 21h30</p>
+              <p className="text-sm text-gray-500">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
             </CardContent>
           </Card>
 
@@ -52,8 +52,8 @@ export default function WeddingDetails() {
               <CardTitle className="text-xl font-serif">Soirée Dansante</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-2">22h00 - 01h00</p>
-              <p className="text-sm text-gray-500">Domaine le plouy, 94470 Boissy-Saint-Léger</p>
+              <p className="text-gray-600 mb-2">21h30 - 01h00</p>
+              <p className="text-sm text-gray-500">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
             </CardContent>
           </Card>
         </div>
@@ -65,7 +65,7 @@ export default function WeddingDetails() {
               <h3 className="text-2xl font-serif text-gray-800 mb-4">Une journée mémorable</h3>
               <p className="text-gray-600 max-w-md">
                 Venez danser et célébrer avec nous ! Musique variée pour toutes les générations, 
-                animations et surprises musicales. Une soirée inoubliable au Domaine le plouy !
+                animations et surprises musicales. Une soirée inoubliable à la Salle des fêtes !
               </p>
             </CardContent>
           </Card>

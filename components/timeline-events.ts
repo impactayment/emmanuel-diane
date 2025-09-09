@@ -1,4 +1,4 @@
-// Définition des événements pour le mariage d'Emmanuel & Diane - 14 Septembre 2025
+// Définition des événements pour le mariage d'Emmanuel & Diane - Dimanche 14 Septembre 2025
 export const allEventsData: {
   id: string
   time: string
@@ -11,7 +11,7 @@ export const allEventsData: {
   details?: string
 }[] = [
   // ================================================
-  // MARIAGE D'EMMANUEL & DIANE - 14 SEPTEMBRE 2025
+  // MARIAGE RELIGIEUX D'EMMANUEL & DIANE - DIMANCHE 14 SEPTEMBRE 2025
   // ================================================
   
   // ========== PHASE PRÉPARATIFS (PRIVÉ) ==========
@@ -64,12 +64,12 @@ export const allEventsData: {
     details: "Dernières retouches et vérifications. Responsable: Chantal (06 11 35 30 79)"
   },
   
-  // 13h50 - Départ
+  // 13h20 - Départ
   {
     id: "transport-1",
-    time: "13h50",
+    time: "13h20",
     event: "Départ vers la salle 🚗",
-    location: "Domicile → Salle de Boissy Saint Léger",
+    location: "Domicile → Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "25min",
     type: "preparation",
     isPublic: false,
@@ -78,84 +78,84 @@ export const allEventsData: {
   
   // ========== PHASE CÉRÉMONIE (PUBLIC) ==========
   
-  // 14h15 - Arrivée (PRIVÉ)
+  // 13h45 - Arrivée (PRIVÉ)
   {
     id: "arrival-1",
-    time: "14h15",
+    time: "13h45",
     event: "Arrivée des mariés sur place",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "15min",
     type: "arrival",
     isPublic: false,
     details: "Installation et dernières vérifications"
   },
   
-  // 14h30 - Accueil invités (PUBLIC)
+  // 14h00 - Accueil invités (PUBLIC)
   {
     id: "ceremony-1",
-    time: "14h30",
+    time: "14h00",
     event: "🌸 Accueil chaleureux des invités",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "1h",
     type: "arrival",
     isPublic: true,
     details: "Installation selon le plan de table. Coordination: Nadine (06 28 55 35 59)"
   },
   
-  // 15h30 - Entrée des mariés
+  // 15h00 - Entrée des mariés
   {
     id: "ceremony-2",
-    time: "15h30",
+    time: "15h00",
     event: "💑 Entrée solennelle d'Emmanuel & Diane",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "10min",
     type: "ceremony",
     isPublic: true,
     details: "Entrée majestueuse accompagnés de leurs parents"
   },
   
-  // 15h40 - Début cérémonie religieuse
+  // 15h10 - Début cérémonie religieuse
   {
     id: "ceremony-3",
-    time: "15h40",
+    time: "15h10",
     event: "⛪ Cérémonie religieuse - Prière d'ouverture",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "10min",
     type: "ceremony",
     isPublic: true,
     details: "Prière de bénédiction par le Pasteur Ngarukiye"
   },
   
-  // 15h50 - Échange des vœux
+  // 15h20 - Échange des vœux
   {
     id: "ceremony-4",
-    time: "15h50",
+    time: "15h20",
     event: "💍 Échange des vœux et des alliances",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "20min",
     type: "ceremony",
     isPublic: true,
     details: "Moment émouvant avec enseignement du Pasteur Corneil. Alliance présentée par les témoins"
   },
   
-  // 16h10 - Pause (PRIVÉ)
+  // 15h40 - Pause (PRIVÉ)
   {
     id: "break-1",
-    time: "16h10",
+    time: "15h40",
     event: "Pause technique",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "5min",
     type: "preparation",
     isPublic: false,
     details: "Réorganisation de l'espace"
   },
   
-  // 16h15 - Vin d'honneur
+  // 15h45 - Vin d'honneur
   {
     id: "reception-1",
-    time: "16h15",
+    time: "15h45",
     event: "🥂 Vin d'honneur festif",
-    location: "Salle de Boissy Saint Léger - Espace cocktail",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger - Espace cocktail",
     duration: "45min",
     type: "reception",
     isPublic: true,
@@ -163,10 +163,10 @@ export const allEventsData: {
     details: "Cocktail raffiné avec animations. Service coordonné par le MC"
   },
   
-  // 17h00 - Séance photos
+  // 16h30 - Séance photos
   {
     id: "photo-1",
-    time: "17h00",
+    time: "16h30",
     event: "📸 Séance photos souvenirs",
     location: "Parc adjacent à la salle",
     duration: "1h",
@@ -176,24 +176,24 @@ export const allEventsData: {
     details: "Photos couple au parc, photos familles par alternance. Coordination: MC et Colonell"
   },
   
-  // 17h15 - Retour mariés (PRIVÉ)
+  // 16h45 - Retour mariés (PRIVÉ)
   {
     id: "transition-1",
-    time: "17h15",
+    time: "16h45",
     event: "Retour des mariés à la salle",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "5min",
     type: "preparation",
     isPublic: false,
     details: "Transition vers séance photo générale. Annonce par MC"
   },
   
-  // 17h20 - Photos générales
+  // 16h50 - Photos générales
   {
     id: "photo-2",
-    time: "17h20",
+    time: "16h50",
     event: "📸 Séance photo avec tous les invités",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "1h",
     type: "photo",
     isPublic: true,
@@ -205,7 +205,7 @@ export const allEventsData: {
     id: "transition-2",
     time: "18h20",
     event: "Fin de la séance photo",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "10min",
     type: "preparation",
     isPublic: false,
@@ -217,7 +217,7 @@ export const allEventsData: {
     id: "transition-3",
     time: "18h30",
     event: "Installation des invités en salle",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "30min",
     type: "preparation",
     isPublic: false,
@@ -231,7 +231,7 @@ export const allEventsData: {
     id: "evening-1",
     time: "19h00",
     event: "✨ Grande entrée des mariés - Nouvelle tenue",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "10min",
     type: "reception",
     isPublic: true,
@@ -243,7 +243,7 @@ export const allEventsData: {
     id: "evening-2",
     time: "19h10",
     event: "💬 Discours des familles",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "20min",
     type: "ceremony",
     isPublic: true,
@@ -255,7 +255,7 @@ export const allEventsData: {
     id: "evening-3",
     time: "19h30",
     event: "🎯 Animations et jeux interactifs",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "40min",
     type: "entertainment",
     isPublic: true,
@@ -267,7 +267,7 @@ export const allEventsData: {
     id: "break-2",
     time: "19h50",
     event: "Pause et préparation repas",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "10min",
     type: "preparation",
     isPublic: false,
@@ -279,7 +279,7 @@ export const allEventsData: {
     id: "dinner-1",
     time: "20h00",
     event: "🍽️ Dîner de gala",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "2h",
     type: "reception",
     isPublic: true,
@@ -291,7 +291,7 @@ export const allEventsData: {
     id: "transition-4",
     time: "22h00",
     event: "Fin du service repas",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "10min",
     type: "preparation",
     isPublic: false,
@@ -303,7 +303,7 @@ export const allEventsData: {
     id: "gifts-1",
     time: "22h10",
     event: "🎁 Partage des cadeaux",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "30min",
     type: "ceremony",
     isPublic: true,
@@ -315,7 +315,7 @@ export const allEventsData: {
     id: "break-3",
     time: "22h40",
     event: "Préparation pièce montée",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "10min",
     type: "preparation",
     isPublic: false,
@@ -327,7 +327,7 @@ export const allEventsData: {
     id: "speech-1",
     time: "22h50",
     event: "💬 Discours d'Emmanuel & Diane",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "10min",
     type: "ceremony",
     isPublic: true,
@@ -339,7 +339,7 @@ export const allEventsData: {
     id: "cake-1",
     time: "23h00",
     event: "🎂 La pièce montée",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "1h20",
     type: "reception",
     isPublic: true,
@@ -351,7 +351,7 @@ export const allEventsData: {
     id: "party-1",
     time: "00h00",
     event: "💃 Ouverture du bal",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "1h",
     type: "entertainment",
     isPublic: true,
@@ -363,7 +363,7 @@ export const allEventsData: {
     id: "end-1",
     time: "01h00",
     event: "🌙 Fin des festivités",
-    location: "Salle de Boissy Saint Léger",
+    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
     duration: "15min",
     type: "ceremony",
     isPublic: true,
