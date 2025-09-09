@@ -896,8 +896,8 @@ export default function Timeline() {
     const [firstEventHour, firstEventMin] = firstDayEvent.time.split("h").map((n) => Number.parseInt(n) || 0)
     const firstEventTime = firstEventHour * 60 + firstEventMin
     
-    // Ne jamais afficher avant le premier événement du jour
-    if (currentTimeInMinutes < firstEventTime) {
+    // Ne jamais afficher avant le premier événement du jour SAUF si on est après minuit
+    if (currentTimeInMinutes < firstEventTime && currentHour >= 6) {
       return null
     }
     
@@ -915,19 +915,40 @@ export default function Timeline() {
       // Hauteur proportionnelle de chaque événement dans la timeline
       const eventHeightPercent = 100 / sortedEvents.length
       
-      if (currentTimeInMinutes >= eventStartInMinutes && currentTimeInMinutes < eventEndInMinutes) {
-        // On est DANS cet événement - calculer la progression exacte
-        const elapsedInEvent = currentTimeInMinutes - eventStartInMinutes
-        const progressInEvent = (elapsedInEvent / eventDurationInMinutes)
-        
-        // Position = position cumulée des événements passés + progression dans l'événement actuel
-        return cumulativePosition + (progressInEvent * eventHeightPercent)
-      } else if (currentTimeInMinutes >= eventEndInMinutes) {
-        // Cet événement est complètement passé
-        cumulativePosition += eventHeightPercent
+      // Gestion spéciale après minuit
+      if (currentHour < 6) {
+        // On est après minuit
+        if (hour >= 6) {
+          // Événement de jour = complètement passé
+          cumulativePosition += eventHeightPercent
+        } else if (hour < 6) {
+          // Événement nocturne (00h00-01h00)
+          if (currentTimeInMinutes >= eventStartInMinutes && currentTimeInMinutes < eventEndInMinutes) {
+            // On est DANS cet événement nocturne
+            const elapsedInEvent = currentTimeInMinutes - eventStartInMinutes
+            const progressInEvent = (elapsedInEvent / eventDurationInMinutes)
+            return cumulativePosition + (progressInEvent * eventHeightPercent)
+          } else if (currentTimeInMinutes >= eventEndInMinutes) {
+            // Cet événement nocturne est passé
+            cumulativePosition += eventHeightPercent
+          }
+        }
       } else {
-        // On n'a pas encore atteint cet événement
-        break
+        // Logique normale pour la journée
+        if (currentTimeInMinutes >= eventStartInMinutes && currentTimeInMinutes < eventEndInMinutes) {
+          // On est DANS cet événement - calculer la progression exacte
+          const elapsedInEvent = currentTimeInMinutes - eventStartInMinutes
+          const progressInEvent = (elapsedInEvent / eventDurationInMinutes)
+          
+          // Position = position cumulée des événements passés + progression dans l'événement actuel
+          return cumulativePosition + (progressInEvent * eventHeightPercent)
+        } else if (currentTimeInMinutes >= eventEndInMinutes) {
+          // Cet événement est complètement passé
+          cumulativePosition += eventHeightPercent
+        } else {
+          // On n'a pas encore atteint cet événement
+          break
+        }
       }
     }
     
