@@ -2,22 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Navigation } from "lucide-react"
 
 export default function Locations() {
-  const locations = [
-    {
-      name: "Cérémonie Religieuse",
-      address: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
-      time: "15h00 - 16h30",
-      description: "Union sacrée devant Dieu - Échange des vœux et bénédictions",
-      color: "blue"
-    },
-    {
-      name: "Réception Festive", 
-      address: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
-      time: "19h30 - 01h00",
-      description: "Dîner de gala, animations et soirée dansante avec famille et amis",
-      color: "rose"
-    },
-  ]
+  // Suppression de l'array locations car maintenant codé en dur pour éviter les classes dynamiques
 
 
   return (
@@ -30,28 +15,43 @@ export default function Locations() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {locations.map((location, index) => {
-            const colorClass = location.color === 'blue' ? 'blue' : 'rose'
-            return (
-              <Card key={index} className={`border-none shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-${colorClass}-50 to-${colorClass === 'blue' ? 'indigo' : 'pink'}-50`}>
-                <CardHeader>
-                  <CardTitle className={`flex items-center gap-3 text-xl font-serif text-${colorClass === 'blue' ? 'blue-800' : 'rose-800'}`}>
-                    <Navigation className={`w-6 h-6 text-${colorClass === 'blue' ? 'blue-600' : 'rose-500'}`} />
-                    {location.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div>
-                      <p className={`font-semibold text-${colorClass === 'blue' ? 'blue-800' : 'gray-800'}`}>{location.address}</p>
-                      <p className={`text-${colorClass === 'blue' ? 'blue' : 'rose'}-600 font-medium`}>{location.time}</p>
-                    </div>
-                    <p className={`text-${colorClass === 'blue' ? 'blue' : 'rose'}-700`}>{location.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            )
-          })}
+          {/* Cérémonie Religieuse */}
+          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-blue-50 to-indigo-50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-xl font-serif text-blue-800">
+                <Navigation className="w-6 h-6 text-blue-600" />
+                Cérémonie Religieuse
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div>
+                  <p className="font-semibold text-blue-800">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
+                  <p className="text-blue-600 font-medium">15h00 - 16h30</p>
+                </div>
+                <p className="text-blue-700">Union sacrée devant Dieu - Échange des vœux et bénédictions</p>
+              </div>
+            </CardContent>
+          </Card>
+          
+          {/* Réception Festive */}
+          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-rose-50 to-pink-50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-xl font-serif text-rose-800">
+                <Navigation className="w-6 h-6 text-rose-500" />
+                Réception Festive
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div>
+                  <p className="font-semibold text-gray-800">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
+                  <p className="text-rose-600 font-medium">19h30 - 01h00</p>
+                </div>
+                <p className="text-rose-700">Dîner de gala, animations et soirée dansante avec famille et amis</p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="mt-12 text-center">
