@@ -339,6 +339,11 @@ export default function Timeline() {
 
   const getEventTimeStatus = (eventTime: string, eventId?: string): "past" | "current" | "soon" | "upcoming" => {
     if (!currentTime) return "upcoming"
+    
+    // Mode simulation : Si on a le param\u00e8tre URL ?simulate=true, on simule le jour du mariage
+    const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
+    const isSimulating = urlParams?.get('simulate') === 'true'
+    
     const now = currentTime
     const currentHour = now.getHours()
     const currentMinute = now.getMinutes()
@@ -413,13 +418,23 @@ export default function Timeline() {
       }
     }
 
-    // Pour les événements de journée - LOGIQUE CORRECTE avec durée
+    // Pour les événements de journée (6h00-23h59)
+    // Si on est après minuit (00h00-05h59), gérer spécialement
+    if (currentHour < 6) {
+      // Si on simule OU si l'événement est un événement de journée après minuit
+      // alors tous les événements de la journée précédente sont passés
+      if (isSimulating || hour >= 6) {
+        return "past"
+      }
+    }
+    
+    // Sinon, logique normale pour les événements de journée
     if (eventEndInMinutes < currentTimeInMinutes) {
       return "past" // L'événement est complètement terminé
     } else if (currentTimeInMinutes >= eventStartInMinutes && currentTimeInMinutes < eventEndInMinutes) {
       return "current" // On est pendant l'événement (ENTRE début et fin)
     } else if (eventStartInMinutes > currentTimeInMinutes && eventStartInMinutes <= currentTimeInMinutes + 30) {
-      return "soon" // L'événement commence dans les 30 prochaines minutes
+      return "soon" // L'événement commence dans les 30 prochaines minutes  
     } else {
       return "upcoming" // L'événement est plus tard
     }
