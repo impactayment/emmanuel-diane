@@ -16,26 +16,17 @@ export default function Team() {
       link: "https://linktr.ee/andersen_isaac"
     },
     {
-      name: "DJ LIXX",
+      name: "DJ Hugo",
       role: "DJ Officiel",
       description: "Ambiance musicale garantie tout au long de la soirée avec des morceaux choisis",
       icon: Music,
       color: "text-orange-500",
-      bgColor: "bg-orange-50",
-      link: "https://djlixx.com"
+      bgColor: "bg-orange-50"
     },
     {
-      name: "Abiwacu",
-      role: "Groupe de Danse",
-      description: "Troupe de danseurs qui nous feront découvrir les danses traditionnelles rwandaises",
-      icon: Crown,
-      color: "text-red-500",
-      bgColor: "bg-red-50"
-    },
-    {
-      name: "Mélodie et Albert",
-      role: "Coordinateurs",
-      description: "Ils veilleront à l'organisation parfaite de l'installation des invités dans la salle",
+      name: "Nadine",
+      role: "Coordinatrice",
+      description: "Elle veillera à l'organisation parfaite de l'installation des invités dans la salle",
       icon: Users,
       color: "text-green-500",
       bgColor: "bg-green-50",
@@ -108,28 +99,15 @@ export default function Team() {
           </Card>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-2 gap-8">
-          <Card className="border-none shadow-lg bg-gradient-to-br from-rose-50 to-pink-50">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-serif text-gray-800 mb-3 flex items-center gap-2">
-                <Crown className="w-6 h-6 text-rose-500" />
-                Traditions Rwandaises
-              </h3>
-              <p className="text-gray-600">
-                Le groupe Abiwacu nous fera l'honneur de présenter les danses traditionnelles rwandaises et
-                invitera nos invités à participer à ces moments de partage culturel.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-none shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="mt-12 flex justify-center">
+          <Card className="border-none shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50 max-w-md">
             <CardContent className="p-6">
               <h3 className="text-xl font-serif text-gray-800 mb-3 flex items-center gap-2">
                 <Music className="w-6 h-6 text-blue-500" />
                 Ambiance Musicale
               </h3>
               <p className="text-gray-600">
-                DJ LIXX veillera à créer l'ambiance parfaite pour chaque moment de la soirée, du dîner aux danses, en
+                DJ Hugo veillera à créer l'ambiance parfaite pour chaque moment de la soirée, du dîner aux danses, en
                 passant par les moments plus intimes.
               </p>
             </CardContent>
