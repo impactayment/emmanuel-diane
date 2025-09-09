@@ -11,33 +11,33 @@ export default function Locations() {
         <div className="text-center mb-16">
           <MapPin className="w-12 h-12 text-rose-400 mx-auto mb-4" />
           <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">Lieux de Célébration</h2>
-          <p className="text-xl text-gray-600">Deux moments distincts dans le même lieu privilégié</p>
+          <p className="text-xl text-gray-600">Tous les endroits où nous vous retrouverons</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Cérémonie Religieuse */}
-          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-blue-50 to-indigo-50">
+          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl font-serif text-blue-800">
-                <Navigation className="w-6 h-6 text-blue-600" />
+              <CardTitle className="flex items-center gap-3 text-xl font-serif">
+                <Navigation className="w-6 h-6 text-rose-500" />
                 Cérémonie Religieuse
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div>
-                  <p className="font-semibold text-blue-800">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
-                  <p className="text-blue-600 font-medium">15h00 - 16h30</p>
+                  <p className="font-semibold text-gray-800">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
+                  <p className="text-rose-600 font-medium">15h00 - 16h30</p>
                 </div>
-                <p className="text-blue-700">Union sacrée devant Dieu - Échange des vœux et bénédictions</p>
+                <p className="text-gray-600">Union sacrée devant Dieu - Échange des vœux et bénédictions</p>
               </div>
             </CardContent>
           </Card>
           
           {/* Réception Festive */}
-          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow bg-gradient-to-br from-rose-50 to-pink-50">
+          <Card className="border-none shadow-lg hover:shadow-xl transition-shadow">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl font-serif text-rose-800">
+              <CardTitle className="flex items-center gap-3 text-xl font-serif">
                 <Navigation className="w-6 h-6 text-rose-500" />
                 Réception Festive
               </CardTitle>
@@ -48,7 +48,7 @@ export default function Locations() {
                   <p className="font-semibold text-gray-800">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
                   <p className="text-rose-600 font-medium">19h30 - 01h00</p>
                 </div>
-                <p className="text-rose-700">Dîner de gala, animations et soirée dansante avec famille et amis</p>
+                <p className="text-gray-600">Dîner de gala, animations et soirée dansante avec famille et amis</p>
               </div>
             </CardContent>
           </Card>
