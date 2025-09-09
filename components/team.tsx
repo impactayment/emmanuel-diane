@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Users, Mic, Music, Camera, Heart, Crown, Link } from "lucide-react"
+import { Users, Mic, Music, Camera, Heart, Crown, Link, Utensils } from "lucide-react"
 
 export default function Team() {
   const teamMembers = [
@@ -31,6 +31,14 @@ export default function Team() {
       color: "text-green-500",
       bgColor: "bg-green-50",
     },
+    {
+      name: "Nelly",
+      role: "Traiteur",
+      description: "Responsable du service gastronomique, elle régalera nos invités avec un buffet d'exception",
+      icon: Utensils,
+      color: "text-rose-500",
+      bgColor: "bg-rose-50",
+    },
   ]
 
   return (
@@ -44,7 +52,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {teamMembers.map((member, index) => {
             const IconComponent = member.icon
             return (
