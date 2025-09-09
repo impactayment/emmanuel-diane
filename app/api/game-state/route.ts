@@ -138,12 +138,30 @@ export async function POST(request: NextRequest) {
         )
         break
         
-      case 'updateProgress':
-        // Mettre à jour la progression (sans créer de nouvelle entrée)
-        // Cette action est maintenant gérée par completePhase
-        break
+      case 'updateProgress': {
+        // Sauvegarder la progression après chaque question
+        const { tableNumber, progress } = data
         
-      case 'completePhase':
+        // Enregistrer la table si elle n'existe pas
+        await query(
+          'INSERT INTO game_registrations (table_number, player_name) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+          [tableNumber, tableNumber]
+        )
+        
+        // Sauvegarder l'état actuel (réponses partielles)
+        if (progress.currentPhase && progress.answers) {
+          await query(
+            `INSERT INTO game_progress (table_number, phase, completed, score, answers)
+             VALUES ($1, $2, false, 0, $3)
+             ON CONFLICT (table_number, phase) 
+             DO UPDATE SET answers = $3`,
+            [tableNumber, progress.currentPhase, JSON.stringify(progress.answers)]
+          )
+        }
+        break
+      }
+        
+      case 'completePhase': {
         const { tableNumber, phaseData } = data
         await query(
           `INSERT INTO game_progress (table_number, phase, completed, score, answers, completed_at)
@@ -164,6 +182,7 @@ export async function POST(request: NextRequest) {
           ]
         )
         break
+      }
         
       case 'updateGameConfig':
         await query(

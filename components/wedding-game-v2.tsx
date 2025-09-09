@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useGameSync } from "@/hooks/useGameSync"
+import { toast } from "@/components/ui/use-toast"
 import { 
   Trophy, 
   Users, 
@@ -367,8 +368,89 @@ export default function WeddingGameV2() {
     }
   }, [tableNumber, serverProgress, gameStarted])
 
+  // Sauvegarder la table sélectionnée dans localStorage
+  useEffect(() => {
+    if (tableNumber) {
+      localStorage.setItem('lastSelectedTable', tableNumber)
+    }
+  }, [tableNumber])
+  
+  // Debug: Observer les changements de selectedAnswer
+  useEffect(() => {
+    console.log("selectedAnswer changed to:", selectedAnswer)
+  }, [selectedAnswer])
+
+  // Restaurer la dernière table utilisée et l'état du jeu au chargement  
+  useEffect(() => {
+    // Ne restaurer qu'une seule fois au chargement initial
+    if (registeredTables.length === 0 || gameStarted) return
+    
+    // Récupérer l'état sauvegardé depuis localStorage
+    const savedGameState = localStorage.getItem('weddingGameState')
+    
+    if (savedGameState) {
+      try {
+        const gameState = JSON.parse(savedGameState)
+        const timeSinceLastSave = Date.now() - gameState.timestamp
+        
+        // Ne restaurer que si la sauvegarde a moins de 30 minutes
+        if (timeSinceLastSave < 30 * 60 * 1000 && registeredTables.includes(gameState.tableNumber)) {
+          setTableNumber(gameState.tableNumber)
+          setCurrentPhase(gameState.currentPhase || 0)
+          setCurrentQuestionIndex(gameState.currentQuestion || 0)
+          
+          if (gameState.tableProgress) {
+            setTableProgress(gameState.tableProgress)
+          }
+          
+          // Marquer le jeu comme commencé
+          setGameStarted(true)
+          setShowResult(false)
+          setSelectedAnswer(null)
+          setTextAnswer("")
+          
+          console.log('Jeu restauré depuis localStorage:', {
+            table: gameState.tableNumber,
+            phase: gameState.currentPhase,
+            question: gameState.currentQuestion
+          })
+          
+          // Envoyer un toast pour informer l'utilisateur
+          toast({
+            title: "Jeu restauré",
+            description: `Reprise à la question ${gameState.currentQuestion + 1} de la phase ${gameState.currentPhase + 1}`,
+          })
+        } else {
+          // Sauvegarde trop ancienne ou table non valide, on la supprime
+          localStorage.removeItem('weddingGameState')
+          const lastTable = localStorage.getItem('lastSelectedTable')
+          if (lastTable && registeredTables.includes(lastTable)) {
+            setTableNumber(lastTable)
+          }
+        }
+      } catch (error) {
+        console.error('Erreur lors de la restauration du jeu:', error)
+        localStorage.removeItem('weddingGameState')
+        const lastTable = localStorage.getItem('lastSelectedTable')
+        if (lastTable && registeredTables.includes(lastTable)) {
+          setTableNumber(lastTable)
+        }
+      }
+    } else {
+      // Pas de sauvegarde, essayer de restaurer juste la table
+      const lastTable = localStorage.getItem('lastSelectedTable')
+      if (lastTable && registeredTables.includes(lastTable) && !tableNumber) {
+        setTableNumber(lastTable)
+      }
+    }
+  }, [registeredTables]) // Retirer serverProgress et startGameWithTable des dépendances pour éviter les boucles
+
   // Vérifier si une phase est débloquée
   const isPhaseUnlocked = (phaseId: number): boolean => {
+    // TEMPORAIRE: Désactiver les restrictions horaires pour les tests
+    return true
+    
+    /*
     if (bypassTimeRestriction) return true
     
     const phase = PHASES.find(p => p.id === phaseId)
@@ -380,6 +462,7 @@ export default function WeddingGameV2() {
     unlockTime.setHours(hours, minutes, 0, 0)
     
     return now >= unlockTime
+    */
   }
 
   // Obtenir les questions de la phase actuelle
@@ -428,25 +511,28 @@ export default function WeddingGameV2() {
 
     // Vérifier si c'est une table valide (Table 1 à 50)
     if (!/^Table ([1-9]|[1-4][0-9]|50)$/.test(tableNumber)) {
-      alert("Veuillez sélectionner une table valide (Table 1 à Table 50)")
+      toast({
+        title: "⚠️ Table invalide",
+        description: "Veuillez sélectionner une table valide (Table 1 à Table 50)",
+        variant: "destructive",
+      })
       return
     }
 
     // Vérifier si au moins une phase est débloquée
     if (!isPhaseUnlocked(1) && !bypassTimeRestriction) {
-      const now = currentTime
-      const hours = now.getHours()
-      const minutes = now.getMinutes()
-      const currentTimeStr = `${hours.toString().padStart(2, '0')}h${minutes.toString().padStart(2, '0')}`
-      
-      alert(`Le jeu sera disponible à partir de 18h00. Il est actuellement ${currentTimeStr}.`)
+      toast({
+        title: "🎮 Jeu bientôt disponible",
+        description: "Nous sommes en train de finaliser les derniers préparatifs. Merci de votre patience !",
+        variant: "default",
+      })
       return
     }
 
     startGameWithTable()
   }
 
-  const startGameWithTable = async () => {
+  const startGameWithTable = useCallback(async () => {
     // Vérifier si la table a déjà une progression
     const existingProgress = serverProgress[tableNumber]
     
@@ -464,10 +550,26 @@ export default function WeddingGameV2() {
       
       // Trouver la première phase non complétée ET débloquée
       let foundPhase = false
+      let resumeQuestionIndex = 0
+      
       for (let i = 0; i < existingProgress.phases.length; i++) {
         if (!existingProgress.phases[i].completed && isPhaseUnlocked(i + 1)) {
           setCurrentPhase(i)
           foundPhase = true
+          
+          // Restaurer la question où on s'était arrêté
+          const phaseAnswers = existingProgress.phases[i].answers || []
+          if (phaseAnswers.length > 0) {
+            // Reprendre à la prochaine question non répondue
+            resumeQuestionIndex = phaseAnswers.filter((a: any) => a !== null && a !== undefined).length
+            const phaseQuestions = QUESTIONS.filter(q => q.phase === i + 1)
+            if (resumeQuestionIndex < phaseQuestions.length) {
+              setCurrentQuestionIndex(resumeQuestionIndex)
+            } else if (resumeQuestionIndex === phaseQuestions.length) {
+              // Toutes les questions de cette phase sont répondues, passer à la suivante
+              setCurrentQuestionIndex(0)
+            }
+          }
           break
         }
       }
@@ -476,6 +578,7 @@ export default function WeddingGameV2() {
         // Toutes les phases sont complétées pour cette table
         // Permettre de recommencer depuis le début
         setCurrentPhase(0)
+        setCurrentQuestionIndex(0)
         setShowPhaseComplete(false)
         
         // Réinitialiser la progression pour permettre de rejouer
@@ -534,11 +637,19 @@ export default function WeddingGameV2() {
     }
     
     setGameStarted(true)
-    setCurrentQuestionIndex(0)
     setSelectedAnswer(null)
     setTextAnswer("")
     setShowResult(false)
-  }
+    
+    // Sauvegarder l'état du jeu dans localStorage  
+    const stateToSave = {
+      tableNumber,
+      currentPhase: currentPhase,
+      currentQuestion: currentQuestionIndex,
+      timestamp: Date.now()
+    }
+    localStorage.setItem('weddingGameState', JSON.stringify(stateToSave))
+  }, [tableNumber, serverProgress, completePhase])
 
   // Gérer la réponse
   const handleAnswer = () => {
@@ -601,8 +712,22 @@ export default function WeddingGameV2() {
       
       setTableProgress(updatedProgress)
       
-      // Ne pas sauvegarder après chaque question - seulement à la fin de la phase
-      // updateProgress(tableNumber, updatedProgress)
+      // Sauvegarder dans localStorage pour persistance locale
+      const gameState = {
+        tableNumber,
+        currentPhase,
+        currentQuestion: currentQuestionIndex,
+        tableProgress: updatedProgress,
+        timestamp: Date.now()
+      }
+      localStorage.setItem('weddingGameState', JSON.stringify(gameState))
+      
+      // Sauvegarder après chaque question pour éviter de perdre les progrès
+      updateProgress(tableNumber, {
+        currentPhase: currentPhase + 1, // Phase 1-based dans l'API
+        currentQuestion: currentQuestionIndex,
+        answers: updatedProgress.phases[currentPhase].answers
+      })
     }
 
     setShowResult(true)
@@ -613,10 +738,30 @@ export default function WeddingGameV2() {
     const questions = getCurrentPhaseQuestions()
     
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1)
+      const nextIndex = currentQuestionIndex + 1
+      setCurrentQuestionIndex(nextIndex)
       setShowResult(false)
       setSelectedAnswer(null)
       setTextAnswer("")
+      
+      // Sauvegarder dans localStorage
+      const gameState = {
+        tableNumber,
+        currentPhase,
+        currentQuestion: nextIndex,
+        tableProgress,
+        timestamp: Date.now()
+      }
+      localStorage.setItem('weddingGameState', JSON.stringify(gameState))
+      
+      // Sauvegarder aussi la progression après avoir changé de question
+      if (tableProgress) {
+        await updateProgress(tableNumber, {
+          currentPhase: currentPhase + 1,
+          currentQuestion: nextIndex,
+          answers: tableProgress.phases[currentPhase].answers
+        })
+      }
     } else {
       // Fin de la phase
       if (tableProgress) {
@@ -724,6 +869,27 @@ export default function WeddingGameV2() {
   const questions = getCurrentPhaseQuestions()
   const currentQuestion = questions[currentQuestionIndex]
   const phase = PHASES[currentPhase]
+  
+  // Protection contre les questions undefined
+  if (gameStarted && !currentQuestion) {
+    console.error("Question non trouvée", { currentPhase, currentQuestionIndex, questions })
+    setGameStarted(false)
+    return (
+      <div className="w-full max-w-4xl mx-auto p-4">
+        <Card className="shadow-xl">
+          <CardContent className="p-8 text-center">
+            <p className="text-red-600">Erreur: Question non trouvée. Veuillez réessayer.</p>
+            <Button 
+              onClick={() => window.location.reload()} 
+              className="mt-4"
+            >
+              Recharger la page
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
 
   // Interface principale
   if (!gameStarted) {
@@ -1419,6 +1585,9 @@ export default function WeddingGameV2() {
                       setTableNumber("")
                       setCurrentPhase(0)
                       setShowPhaseComplete(false)
+                      // Effacer les données de localStorage
+                      localStorage.removeItem('gameInProgress')
+                      localStorage.removeItem('lastSelectedTable')
                     }}
                     variant="outline"
                     className="border-purple-500 text-purple-500 hover:bg-purple-50"
@@ -1534,7 +1703,11 @@ export default function WeddingGameV2() {
                     {currentQuestion.options?.map((option) => (
                       <Button
                         key={option}
-                        onClick={() => setSelectedAnswer(option)}
+                        onClick={() => {
+                          console.log("Button clicked:", option)
+                          setSelectedAnswer(option)
+                          console.log("Selected answer set to:", option)
+                        }}
                         variant={selectedAnswer === option ? "default" : "outline"}
                         className={`p-4 h-auto ${
                           selectedAnswer === option 
@@ -1569,6 +1742,7 @@ export default function WeddingGameV2() {
                 <Button
                   onClick={handleAnswer}
                   disabled={
+                    !currentQuestion ||
                     (currentQuestion.type === 'boolean' && selectedAnswer === null) ||
                     (currentQuestion.type === 'multiple' && !selectedAnswer) ||
                     (currentQuestion.type === 'text' && !textAnswer.trim())

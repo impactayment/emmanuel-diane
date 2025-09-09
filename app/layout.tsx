@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Playfair_Display, Dancing_Script } from "next/font/google"
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -23,7 +24,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <body className={`${inter.variable} ${playfair.variable} ${dancing.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${inter.variable} ${playfair.variable} ${dancing.variable} font-sans antialiased`}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   )
 }

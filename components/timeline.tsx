@@ -1209,7 +1209,8 @@ export default function Timeline() {
                 )}
               </Button>
               
-              <Button
+              {/* Bouton Jeu - MASQUÉ */}
+              {/* <Button
                 onClick={() => setShowGame(!showGame)}
                 variant="ghost"
                 data-game-button
@@ -1224,7 +1225,7 @@ export default function Timeline() {
                 {showGame && (
                   <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full animate-pulse"></span>
                 )}
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
@@ -1435,12 +1436,13 @@ export default function Timeline() {
                                     <span className="text-lg">{item.weather.icon}</span>
                                     <span className="text-sm font-medium text-gray-700">{item.weather.temperature}°C</span>
                                   </div>
-                                  {item.isOutdoor && (
+                                  {/* Masqué: Label "Extérieur" */}
+                                  {/* {item.isOutdoor && (
                                     <div className="flex items-center gap-1 text-orange-600 text-xs bg-orange-50 px-2 py-1 rounded-full">
                                       <AlertCircle className="w-3 h-3" />
                                       <span>Extérieur</span>
                                     </div>
-                                  )}
+                                  )} */}
                                 </div>
                               )}
                               

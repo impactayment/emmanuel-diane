@@ -46,7 +46,7 @@ export default function Locations() {
               <div className="space-y-3">
                 <div>
                   <p className="font-semibold text-gray-800">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
-                  <p className="text-rose-600 font-medium">19h30 - 01h00</p>
+                  <p className="text-rose-600 font-medium">20h00 - 01h00</p>
                 </div>
                 <p className="text-gray-600">Dîner de gala, animations et soirée dansante avec famille et amis</p>
               </div>

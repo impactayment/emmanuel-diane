@@ -6,7 +6,7 @@ export default function WeddingDetails() {
     <section id="wedding-details" className="py-20 bg-gradient-to-br from-rose-50 to-pink-50">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">Programme de la Journée</h2>
+          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">Détails de la Cérémonie</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Rejoignez-nous pour célébrer notre union dans la joie et l'amour - Cérémonie religieuse et Réception
           </p>
@@ -42,8 +42,8 @@ export default function WeddingDetails() {
               <CardTitle className="text-xl font-serif text-rose-800">Réception & Dîner</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-rose-700 mb-2 font-semibold">19h30 - 00h00</p>
-              <p className="text-sm text-rose-600">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
+              <p className="text-rose-700 mb-2 font-semibold">20h00 - 22h00</p>
+              <p className="text-sm text-gray-600">Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger</p>
               <p className="text-xs text-rose-500 mt-2 italic">Célébration avec famille et amis</p>
             </CardContent>
           </Card>
