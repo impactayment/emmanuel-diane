@@ -40,14 +40,6 @@ export default function Team() {
       color: "text-green-500",
       bgColor: "bg-green-50",
     },
-    {
-      name: "Alice",
-      role: "Surprise Spéciale",
-      description: "Elle nous réserve des moments de surprise tout au long de la soirée",
-      icon: Heart,
-      color: "text-purple-500",
-      bgColor: "bg-purple-50",
-    },
   ]
 
   return (
