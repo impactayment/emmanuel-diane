@@ -720,11 +720,6 @@ export default function Timeline() {
       title: "Discours des familles",
       description: "Messages touchants de Nadine et Divine"
     },
-    "evening-3": {
-      emoji: "🎯",
-      title: "Animations et jeux interactifs",
-      description: "Moments de rire et de partage animés par le MC"
-    },
     "dinner-1": {
       emoji: "🍽️",
       title: "Dîner de gala",

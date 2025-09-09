@@ -250,18 +250,6 @@ export const allEventsData: {
     details: "Nadine et Divine. Un membre par famille"
   },
   
-  // 19h30 - Animations
-  {
-    id: "evening-3",
-    time: "19h30",
-    event: "🎯 Animations et jeux interactifs",
-    location: "Salle des fêtes, 6 rue de Sucy 94470 Boissy-Saint-Léger",
-    duration: "40min",
-    type: "entertainment",
-    isPublic: true,
-    details: "Animations par le MC. Les mariés peuvent se retirer pour se rafraîchir"
-  },
-  
   // 19h50 - Pause (PRIVÉ)
   {
     id: "break-2",
