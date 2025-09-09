@@ -271,7 +271,7 @@ export const allEventsData: {
     duration: "2h",
     type: "reception",
     isPublic: true,
-    details: "Buffet gastronomique. Service par Nelly (06 35 92 38 10). Appel par numéro de table"
+    details: "Buffet. Service par Nelly (06 35 92 38 10). Appel par numéro de table"
   },
   
   // 22h00 - Fin repas (PRIVÉ)

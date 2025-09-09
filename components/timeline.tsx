@@ -723,7 +723,7 @@ export default function Timeline() {
     "dinner-1": {
       emoji: "🍽️",
       title: "Dîner de gala",
-      description: "Buffet gastronomique avec service par tables"
+      description: "Buffet avec service par tables"
     },
     "gifts-1": {
       emoji: "🎁",
