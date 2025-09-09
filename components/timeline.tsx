@@ -352,6 +352,17 @@ export default function Timeline() {
     const [hour, min] = eventTime.split("h").map((n) => Number.parseInt(n) || 0)
     const eventStartInMinutes = hour * 60 + min
     
+    // DEBUG: Log pour comprendre le problème  
+    if (eventId === "ceremony-1" || eventId === "dinner-1" || eventId === "party-1") {
+      console.log(`Event ${eventId} at ${eventTime}:`, {
+        currentHour,
+        eventHour: hour,
+        isAfterMidnight: currentHour < 6,
+        isDayEvent: hour >= 6,
+        shouldBePast: currentHour < 6 && hour >= 6
+      })
+    }
+    
     // Trouver la durée de l'événement
     let eventDurationInMinutes = 15 // Durée par défaut si non trouvée
     if (eventId) {
@@ -387,7 +398,9 @@ export default function Timeline() {
       const firstEventTime = firstHour * 60 + firstMin
       
       // Si on n'a pas encore commencé le premier événement du jour
-      if (currentTimeInMinutes < firstEventTime) {
+      // MAIS attention: si on est après minuit (00h00-05h59), ne pas traiter les événements de la journée précédente comme "upcoming"
+      if (currentTimeInMinutes < firstEventTime && currentHour >= 6) {
+        // On est dans la journée et pas encore au premier événement
         // Vérifier si on est proche du premier événement
         const timeDiff = firstEventTime - currentTimeInMinutes
         if (timeDiff > 0 && timeDiff <= 30) {
@@ -419,13 +432,10 @@ export default function Timeline() {
     }
 
     // Pour les événements de journée (6h00-23h59)
-    // Si on est après minuit (00h00-05h59), gérer spécialement
-    if (currentHour < 6) {
-      // Si on simule OU si l'événement est un événement de journée après minuit
-      // alors tous les événements de la journée précédente sont passés
-      if (isSimulating || hour >= 6) {
-        return "past"
-      }
+    // Si on est après minuit (00h00-05h59), tous les événements de jour sont passés
+    if (currentHour < 6 && hour >= 6) {
+      // On est après minuit et l'événement est de la journée précédente
+      return "past"
     }
     
     // Sinon, logique normale pour les événements de journée
