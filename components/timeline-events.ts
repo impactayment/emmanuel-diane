@@ -123,7 +123,7 @@ export const allEventsData: {
     duration: "10min",
     type: "ceremony",
     isPublic: true,
-    details: "Prière de bénédiction par le Pasteur Ngarukiye"
+    details: "Prière d'ouverture et bénédiction"
   },
   
   // 15h20 - Échange des vœux

@@ -713,7 +713,7 @@ export default function Timeline() {
     "ceremony-3": {
       emoji: "⛪",
       title: "Cérémonie religieuse",
-      description: "Prière d'ouverture et bénédiction par le Pasteur Ngarukiye"
+      description: "Prière d'ouverture et bénédiction"
     },
     "ceremony-4": {
       emoji: "💍",
